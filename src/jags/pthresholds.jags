@@ -1,0 +1,23 @@
+## One threshold per party
+model {
+
+  for(i in 1:N) {
+    logit(Q[i,1]) <- thr[voto[i], 1] - nac[i]
+    p[i,1] <- Q[i,1]
+    
+    for(j in 2:T) {
+      logit(Q[i,j]) <- thr[voto[i], j] - nac[i]
+      p[i,j] <- Q[i,j] - Q[i,j-1]
+    }
+    p[i,T + 1] <- 1 - Q[i,T] 
+    
+    onac[i] ~ dcat(p[i,])
+  }   
+  
+  
+  for (t in 1:T) {
+    for (p in 1:P) {
+      thr[p, t] ~ dunif(1, 10)
+    }
+  }
+}
