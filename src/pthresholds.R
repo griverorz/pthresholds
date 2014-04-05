@@ -146,4 +146,4 @@ pq <- p + geom_pointrange(size = 0.75) +
     scale_y_continuous("Nationalism", limits = c(1, 10)) +
     scale_x_discrete("Party") +
     geom_hline(aes(yintercept = 5.5), linetype = 3)
-ggsave("img/pthreshold.png", pq, width = 2*par("din")[1])
+ggsave("img/pthreshold.png", pq, width = 2.5*par("din")[1])
